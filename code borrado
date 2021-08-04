@@ -1,0 +1,10 @@
+const express = require("express"); // llamamos a expres para ser usada
+const app = express(); //se inica que se va a usar express
+
+
+const port = 3000;
+
+app.listen(port, () => {
+  //ejecucion tipo flechas en el puerto indicado
+  console.log("Servidor Ejecutandose en el puerto 3000"); //indicamos que se establece la conexion-segun el puerto indicado
+});
