@@ -7,7 +7,8 @@ npm install express --save
 npm install nodemon -D
 npm install morgan --save
 npm insatll cors --save
-
+npm install --save babel-cli
+npm install --save babel-preset-env babel-preset-stage-3
 ```
 
 Nodemon : Reiniciar el Servidor cada vez que tengamos un cambio

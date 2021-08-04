@@ -1,0 +1,7 @@
+// configuraciones de babel 
+{
+    "presets": [
+        "env",
+        "stage-3"
+    ]
+}
