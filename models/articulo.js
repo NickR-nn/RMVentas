@@ -10,5 +10,5 @@ const articuloSchema = new Schema({
   estado:{type: Number, default:1 },
   createAt:{type: Date, default: Date.now},
 });
-const Articulo = mongoose.model("categorias", articuloSchema);
+const Articulo = mongoose.model("articulo", articuloSchema);
 export default Articulo;
