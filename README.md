@@ -16,4 +16,4 @@ npm express-promise-router --save //vuelve asincrono al midleware
 Nodemon : Reiniciar el Servidor cada vez que tengamos un cambio
 Morgan: Para captura de solicitudes http como get y post 
 Cors: llamadas con ajax
-
+Babel: compilador de JS para navegadores antiguos
