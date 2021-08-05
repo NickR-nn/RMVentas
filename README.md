@@ -11,6 +11,7 @@ npm install --save babel-cli
 npm install --save babel-preset-env babel-preset-stage-3
 npm install mongoose --save
 npm express-promise-router --save //vuelve asincrono al midleware
+npm install bcryptjs --save
 ```
 
 Nodemon : Reiniciar el Servidor cada vez que tengamos un cambio
