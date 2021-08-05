@@ -1,4 +1,6 @@
 import Categoria from "./categoria";
+import Articulo from "./articulo"
 export default {
-    Categoria
+    Categoria,
+    Articulo
 }
