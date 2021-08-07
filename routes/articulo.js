@@ -3,7 +3,7 @@ import articuloController from "../controllers/ArticuloController";
 import auth from "../middlewares/auth";
 const router = routerx();
 
-router.post("/add", auth.verfyAlmacenero, articuloController.add);
+router.post("/add", auth.verifyAlmacenero, articuloController.add);
 router.get("/query", auth.verifyAlmacenero, articuloController.query);
 router.get("/list", auth.verifyAlmacenero, articuloController.list);
 router.put("/update", auth.verifyAlmacenero, articuloController.update);
