@@ -93,12 +93,10 @@ export default {
   },
   update: async (req, res, next) => {
     try {
-      const reg0 = await models.Persona.findOne({ _id: req.body._id });
-
-      const reg = await models.Persona.findByIdAndUpdate(
+        const reg = await models.Persona.findByIdAndUpdate(
         { _id: req.body._id },
         {
-          tipo_persona: req.body.rol,
+          tipo_persona: req.body.tipo_persona,
           nombre: req.body.nombre,
           tipo_documento: req.body.tipo_documento,
           num_documento: req.body.num_documento,
