@@ -1,6 +1,6 @@
 import models from "../models";
-import bcrypt from "bcryptjs";
-import token from "../services/token";
+import bcrypt from "bcryptjs";//encriptacion 1
+import token from "../services/token";//llave encriptacion 2
 
 export default {
   add: async (req, res, next) => {
