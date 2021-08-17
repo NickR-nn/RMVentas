@@ -20,23 +20,23 @@ async function disminuirStock(idarticulo, cantidad) {
 export default {
   add: async (req, res, next) => {
     try {
-      const reg = await models.Ingreso.create(req.body);
+      const reg = await models.Venta.create(req.body);
       //Actualizar stock
       let detalles = req.body.detalles;
       detalles.map(function (x) {
-        aumentarStock(x._id, x.cantidad);
+        disminuirStock(x._id, x.cantidad);
       });
       res.status(200).json(reg);
     } catch (e) {
       res.status(500).send({
-        message: "OcurriÃhjk³ un error",
+        message: "Ocurrio un error",
       });
       next(e);
     }
   },
   query: async (req, res, next) => {
     try {
-      const reg = await models.Ingreso.findOne({ _id: req.query._id })
+      const reg = await models.Venta.findOne({ _id: req.query._id })
         .populate("usuario", { nombre: 1 })
         .populate("persona", { nombre: 1 });
       if (!reg) {
@@ -48,7 +48,7 @@ export default {
       }
     } catch (e) {
       res.status(500).send({
-        message: "OcurriÃ³ un error",
+        message: "Ocurrio un error",
       });
       next(e);
     }
@@ -56,73 +56,28 @@ export default {
   list: async (req, res, next) => {
     try {
       let valor = req.query.valor;
-      const reg = await models.Ingreso.find(
-        {
-          $or: [
-            { num_comprobante: new RegExp(valor, "i") },
-            { serie_comprobante: new RegExp(valor, "i") },
-          ],
-        },
-      )
+      const reg = await models.Venta.find({
+        $or: [
+          { num_comprobante: new RegExp(valor, "i") },
+          { serie_comprobante: new RegExp(valor, "i") },
+        ],
+      })
         .populate("usuario", { nombre: 1 })
         .populate("persona", { nombre: 1 })
         .sort({ createdAt: -1 });
       res.status(200).json(reg);
     } catch (e) {
       res.status(500).send({
-        message: "OcurriÃ³ un error",
+        message: "Ocurrio un error",
       });
       next(e);
     }
   },
-  /*
-    update: async (req,res,next) => {
-        try {
-            const reg = await models.Categoria.findByIdAndUpdate({_id:req.body._id},{nombre:req.body.nombre,descripcion:req.body.descripcion});
-            res.status(200).json(reg);
-        } catch(e){
-            res.status(500).send({
-                message:'OcurriÃ³ un error'
-            });
-            next(e);
-        }
-    },
-    remove: async (req,res,next) => {
-        try {
-            const reg = await models.Categoria.findByIdAndDelete({_id:req.body._id});
-            res.status(200).json(reg);
-        } catch(e){
-            res.status(500).send({
-                message:'OcurriÃ³ un error'
-            });
-            next(e);
-        }
-    },
-    */
   activate: async (req, res, next) => {
     try {
-      const reg = await models.Ingreso.findByIdAndUpdate(
+      const reg = await models.Venta.findByIdAndUpdate(
         { _id: req.body._id },
         { estado: 1 }
-      );
-      //Actualizar stock
-      let detalles = reg.detalles;
-      detalles.map(function (x) {
-        aumentarStock(x._id, x.cantidad);
-      });
-      res.status(200).json(reg);
-    } catch (e) {
-      res.status(500).send({
-        message: "OcurriÃ³ un error",
-      });
-      next(e);
-    }
-  },
-  desactivate: async (req, res, next) => {
-    try {
-      const reg = await models.Ingreso.findByIdAndUpdate(
-        { _id: req.body._id },
-        { estado: 0 }
       );
       //Actualizar stock
       let detalles = reg.detalles;
@@ -132,7 +87,26 @@ export default {
       res.status(200).json(reg);
     } catch (e) {
       res.status(500).send({
-        message: "OcurriÃ³ un error",
+        message: "Ocurrio un error",
+      });
+      next(e);
+    }
+  },
+  desactivate: async (req, res, next) => {
+    try {
+      const reg = await models.Venta.findByIdAndUpdate(
+        { _id: req.body._id },
+        { estado: 0 }
+      );
+      //Actualizar stock
+      let detalles = reg.detalles;
+      detalles.map(function (x) {
+        aumentarStock(x._id, x.cantidad);
+      });
+      res.status(200).json(reg);
+    } catch (e) {
+      res.status(500).send({
+        message: "Ocurrio un error",
       });
       next(e);
     }
