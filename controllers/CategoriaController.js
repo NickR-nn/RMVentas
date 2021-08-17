@@ -1,10 +1,5 @@
 import models from "../models";
 export default {
-  /*
-    //req argumento de soliditud
-    //res '' de respuesta
-    //
-    */
   add: async (req, res, next) => {
     try {
       const reg = await models.Categoria.create(req.body);
