@@ -10,6 +10,6 @@ router.get("/list", auth.verifyAlmacenero, articuloController.list);
 router.put("/update", auth.verifyAlmacenero, articuloController.update);
 router.delete("/remove", auth.verifyAlmacenero, articuloController.remove);
 router.put("/activate", auth.verifyAlmacenero, articuloController.activate);
-router.put("/deactivate", auth.verifyAlmacenero, articuloController.deactivate);
+router.put("/desactivate", auth.verifyAlmacenero, articuloController.desactivate);
 
 export default router;

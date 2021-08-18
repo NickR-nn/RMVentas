@@ -15,6 +15,6 @@ router.get(
 router.put("/update", auth.verifyUsuario, personaController.update);
 router.delete("/remove", auth.verifyUsuario, personaController.remove);
 router.put("/activate", auth.verifyUsuario, personaController.activate);
-router.put("/deactivate", auth.verifyUsuario, personaController.deactivate);
+router.put("/desactivate", auth.verifyUsuario, personaController.desactivate);
 
 export default router;

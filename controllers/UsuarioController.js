@@ -105,7 +105,7 @@ export default {
       next(error);
     }
   },
-  deactivate: async (req, res, next) => {
+  desactivate: async (req, res, next) => {
     try {
       const reg = await models.Usuario.findByIdAndUpdate(
         { _id: req.body._id },
