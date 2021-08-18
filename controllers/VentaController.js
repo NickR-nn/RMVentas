@@ -111,4 +111,50 @@ export default {
       next(e);
     }
   },
+  graficodocemeses: async (req, res, next) => {
+    try {
+      const reg = await models.Venta.aggregate([
+        {
+          $group: {
+            _id: {
+              month: { $month: "$createdAt" },
+              year: { $year: "$createdAt" },
+            },
+            total: { $sum: "$total" },
+            numero: { $sum: 1 },
+          },
+        },
+        {
+          $sort: {
+            "_id.year": -1,
+            "_id.month": -1,
+          },
+        },
+      ]).limit(12);
+      res.status(200).json(reg);
+    } catch (e) {
+      res.status(500).send({
+        message: "Ocurrio un error",
+      });
+      next(e);
+    }
+  },
+  consultaFechas: async (req, res, next) => {
+    try {
+      let start = req.query.start;
+      let end = req.query.end;
+      const reg = await models.Venta.find({
+        createdAt: { $gte: start, $lt: end },
+      })
+        .populate("usuario", { nombre: 1 })
+        .populate("persona", { nombre: 1 })
+        .sort({ createdAt: -1 });
+      res.status(200).json(reg);
+    } catch (e) {
+      res.status(500).send({
+        message: "Ocurrio un error",
+      });
+      next(e);
+    }
+  },
 };

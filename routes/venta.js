@@ -7,7 +7,9 @@ const router = routerx();
 router.post("/add", auth.verifyVendedor, ventaController.add);
 router.get("/query", auth.verifyVendedor, ventaController.query);
 router.get("/list", auth.verifyVendedor, ventaController.list);
+router.get("/grafico", auth.verifyUsuario, ventaController.graficodocemeses);
+router.get("/consultaFechas", auth.verifyUsuario, ventaController.consultaFechas);
 router.put("/activate", auth.verifyVendedor, ventaController.activate);
-router.put("/deactivate", auth.verifyVendedor, ventaController.desactivate);
+router.put("/desactivate", auth.verifyVendedor, ventaController.desactivate);
 
 export default router;
