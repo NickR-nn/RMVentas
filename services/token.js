@@ -1,7 +1,6 @@
 import jwt from "jsonwebtoken";
 import models from "../models";
 
-
 // renovacion del tokens si no se cierra
 async function checkToken(token) {
   let __id = null;
@@ -23,8 +22,8 @@ async function checkToken(token) {
 }
 
 export default {
-  encode: async (_id) => {
-    const token = jwt.sign({ _id: _id }, "secret", {
+  encode: async (_id, rol, email) => {
+    const token = jwt.sign({ _id: _id, rol: rol, email: email }, "secret", {
       expiresIn: "1d",
     });
     return token;

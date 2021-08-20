@@ -78,15 +78,15 @@ export default {
   activate: async (req, res, next) => {
     try {
       const reg = await models.Categoria.findByIdAndUpdate(
-        { _id: req.query._id },
+        { _id: req.body._id },
         { estado: 1 }
       );
       res.status(200).json(reg);
-    } catch (error) {
+    } catch (e) {
       res.status(500).send({
-        message: "Algo fall0...",
+        message: "Ocurrio un error",
       });
-      next(error);
+      next(e);
     }
   }, //activar categorias
   desactivate: async (req, res, next) => {

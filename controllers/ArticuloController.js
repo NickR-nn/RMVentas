@@ -64,11 +64,11 @@ export default {
         .populate("categoria", { nombre: 1 })
         .sort({ createdAt: -1 });
       res.status(200).json(reg);
-    } catch (error) {
+    } catch (e) {
       res.status(500).send({
-        message: "Algo fall0...",
+        message: "Ocurrió un error",
       });
-      next(error);
+      next(e);
     }
   },
   update: async (req, res, next) => {

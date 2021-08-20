@@ -63,7 +63,13 @@ export default {
         ],
       })
         .populate("usuario", { nombre: 1 })
-        .populate("persona", { nombre: 1 })
+        .populate("persona", {
+          nombre: 1,
+          direccion: 1,
+          num_documento: 1,
+          telefono: 1,
+          email: 1,
+        })
         .sort({ createdAt: -1 });
       res.status(200).json(reg);
     } catch (e) {
@@ -117,7 +123,7 @@ export default {
         {
           $group: {
             _id: {
-              month: { $month: "$createdAt" },
+              mes: { $month: "$createdAt" },
               year: { $year: "$createdAt" },
             },
             total: { $sum: "$total" },
@@ -127,14 +133,15 @@ export default {
         {
           $sort: {
             "_id.year": -1,
-            "_id.month": -1,
+            "_id.mes": -1,
           },
         },
       ]).limit(12);
+
       res.status(200).json(reg);
     } catch (e) {
       res.status(500).send({
-        message: "Ocurrio un error",
+        message: "Ocurrió un error",
       });
       next(e);
     }
@@ -152,7 +159,7 @@ export default {
       res.status(200).json(reg);
     } catch (e) {
       res.status(500).send({
-        message: "Ocurrio un error",
+        message: "Ocurrió un error",
       });
       next(e);
     }

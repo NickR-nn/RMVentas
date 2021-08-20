@@ -7,9 +7,9 @@ export default {
       res.status(200).json(reg);
     } catch (e) {
       res.status(500).send({
-        message: "Algo fall0...",
+        message: "Ocurrió un error",
       });
-      next(error);
+      next(e);
     }
   },
   query: async (req, res, next) => {
@@ -22,11 +22,11 @@ export default {
       } else {
         res.status(200).json(reg);
       }
-    } catch (error) {
+    } catch (e) {
       res.status(500).send({
-        message: "Algo fall0...",
+        message: "Ocurrió un error",
       });
-      next(error);
+      next(e);
     }
   },
   list: async (req, res, next) => {
@@ -42,11 +42,11 @@ export default {
         { createdAt: 0 }
       ).sort({ createdAt: -1 });
       res.status(200).json(reg);
-    } catch (error) {
+    } catch (e) {
       res.status(500).send({
-        message: "Algo fall0...",
+        message: "Ocurrió un error",
       });
-      next(error);
+      next(e);
     }
   },
   listClientes: async (req, res, next) => {
@@ -63,11 +63,11 @@ export default {
         { createdAt: 0 }
       ).sort({ createdAt: -1 });
       res.status(200).json(reg);
-    } catch (error) {
+    } catch (e) {
       res.status(500).send({
-        message: "Algo fall0...",
+        message: "Ocurrió un error",
       });
-      next(error);
+      next(e);
     }
   },
   listProveedores: async (req, res, next) => {
@@ -84,16 +84,16 @@ export default {
         { createdAt: 0 }
       ).sort({ createdAt: -1 });
       res.status(200).json(reg);
-    } catch (error) {
+    } catch (e) {
       res.status(500).send({
-        message: "Algo fall0...",
+        message: "Ocurrió un error",
       });
-      next(error);
+      next(e);
     }
   },
   update: async (req, res, next) => {
     try {
-        const reg = await models.Persona.findByIdAndUpdate(
+      const reg = await models.Persona.findByIdAndUpdate(
         { _id: req.body._id },
         {
           tipo_persona: req.body.tipo_persona,
@@ -106,22 +106,22 @@ export default {
         }
       );
       res.status(200).json(reg);
-    } catch (error) {
+    } catch (e) {
       res.status(500).send({
-        message: "Algo fall0...",
+        message: "Ocurrió un error",
       });
-      next(error);
+      next(e);
     }
   },
   remove: async (req, res, next) => {
     try {
       const reg = await models.Persona.findByIdAndDelete({ _id: req.body._id });
       res.status(200).json(reg);
-    } catch (error) {
+    } catch (e) {
       res.status(500).send({
-        message: "Algo fall0...",
+        message: "Ocurrió un error",
       });
-      next(error);
+      next(e);
     }
   },
   activate: async (req, res, next) => {
@@ -131,11 +131,11 @@ export default {
         { estado: 1 }
       );
       res.status(200).json(reg);
-    } catch (error) {
+    } catch (e) {
       res.status(500).send({
-        message: "Algo fall0...",
+        message: "Ocurrió un error",
       });
-      next(error);
+      next(e);
     }
   },
   desactivate: async (req, res, next) => {
@@ -145,11 +145,11 @@ export default {
         { estado: 0 }
       );
       res.status(200).json(reg);
-    } catch (error) {
+    } catch (e) {
       res.status(500).send({
-        message: "Algo fall0...",
+        message: "Ocurrió un error",
       });
-      next(error);
+      next(e);
     }
   },
 };
